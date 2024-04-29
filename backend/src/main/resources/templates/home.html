@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body class="container">
+<h1>Hello Spring</h1>
+<p>회원 기능</p>
+<p>
+<p th:text="'안녕하세요. ' + ${myName}">안녕하세요. 손님</p>
+<a href="/admin/new">회원 가입</a>
+<a href="/admin/userList">회원 목록</a>
+</p>
+</body>
+</html>
