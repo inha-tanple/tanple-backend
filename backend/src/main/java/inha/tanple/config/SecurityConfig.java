@@ -13,15 +13,23 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//        http
+//                .authorizeHttpRequests((authz) -> authz
+//                        .requestMatchers("/admin/**").hasRole("ADMIN")
+//                        .requestMatchers("/api/**").hasRole("USER")
+//                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
+//                        .requestMatchers("/docs/**").permitAll()
+//                        .anyRequest().authenticated()
+//                )
+//                .formLogin(Customizer.withDefaults());
         http
-                .authorizeHttpRequests((authz) -> authz
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/api/**").hasRole("USER")
-                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
-                        .requestMatchers("/docs/**").permitAll()
-                        .anyRequest().authenticated()
+                .authorizeHttpRequests((authz) ->
+                        authz
+                                .requestMatchers("/admin/**").hasRole("ADMIN")
+                                .anyRequest().permitAll()
                 )
                 .formLogin(Customizer.withDefaults());
+
         return http.build();
     }
 }
