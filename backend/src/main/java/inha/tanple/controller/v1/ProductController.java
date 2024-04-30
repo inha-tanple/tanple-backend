@@ -40,6 +40,7 @@ public class ProductController {
         Product product = productService.getProduct(productId);
 
         ProductResponseDto dto = new ProductResponseDto(product);
+
         return ResponseEntity.ok(dto);
     }
 
