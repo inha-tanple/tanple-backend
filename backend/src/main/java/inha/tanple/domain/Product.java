@@ -16,9 +16,6 @@ import java.util.Date;
 @Table(name = "products")
 @EntityListeners(AuditingEntityListener.class)
 public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Column(nullable = false)
     private String name;
@@ -32,8 +29,10 @@ public class Product {
     private LocalDateTime lastModifiedDate;
 
 //interface 용 데이터를 작성했습니다.
+    @Id // 기존의 ID 대신 Barcode로 대체하였습니다.
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private long barcode;
+    private Long barcode;
 
     @Column(nullable = false)
     private String company;
@@ -57,11 +56,18 @@ public class Product {
     private float taxRate;
 
     @Column(nullable = false)
-    private Date startDate = new Date();
+    private Date startDate;
 
     @Column(nullable = false)
-    private Date endDate = new Date();
+    private Date endDate;
 
+    // startDate와 endDate의 할당을 분리하였습니다.
+    protected void setStartDate(Date startDate) {
+        startDate = new Date();
+    }
 
+    protected void setEndDate(Date endDate) {
+        endDate = new Date();
+    }
 
 }

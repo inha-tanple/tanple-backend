@@ -6,7 +6,6 @@ import jakarta.persistence.Column;
 import java.util.Date;
 
 public class ProductResponseDto {
-    Long id;
     String name;
     int price;
 
@@ -17,18 +16,17 @@ public class ProductResponseDto {
     int taxIncludedPrice;
     String category;
     float taxRate;
-    Date startDate = new Date();
-    Date endDate = new Date();
+    Date startDate;
+    Date endDate;
 
-    public ProductResponseDto(Long id, String name, int price) {
-        this.id = id;
+    public ProductResponseDto(Long barcode, String name, int price) {
+        this.barcode = barcode;
         this.name = name;
         this.price = price;
     }
 
 
     public ProductResponseDto(Product product) {
-        this.id = product.getId();
         this.name = product.getName();
         this.price = product.getPrice();
 
