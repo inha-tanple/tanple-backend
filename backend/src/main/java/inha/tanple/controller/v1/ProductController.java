@@ -28,7 +28,7 @@ public class ProductController {
         List<Product> products = productService.getProducts(offset, limit);
 
         List<ProductResponseDto> dtos = products.stream()
-                .map(p -> new ProductResponseDto(p.getId(), p.getName(), p.getPrice()))
+                .map(p -> new ProductResponseDto(p.getBarcode(), p.getName(), p.getPrice()))
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok(dtos);
@@ -40,6 +40,7 @@ public class ProductController {
         Product product = productService.getProduct(productId);
 
         ProductResponseDto dto = new ProductResponseDto(product);
+
         return ResponseEntity.ok(dto);
     }
 
