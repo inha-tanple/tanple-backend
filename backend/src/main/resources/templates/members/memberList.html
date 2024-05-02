@@ -17,9 +17,9 @@
             </thead>
             <tbody>
             <!-- model 안에 있는 key가 members인 변수를 가져옴 -->
-            <tr th:each="user : ${userList}">
-                <td th:text="${user.id}">id</td>
-                <td th:text="${user.name}">name</td>
+            <tr th:each="member : ${memberList}">
+                <td th:text="${member.id}">id</td>
+                <td th:text="${member.name}">name</td>
             </tr>
             </tbody>
         </table>

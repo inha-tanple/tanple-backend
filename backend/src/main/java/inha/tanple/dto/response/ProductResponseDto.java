@@ -1,15 +1,14 @@
 package inha.tanple.dto.response;
 
 import inha.tanple.domain.Product;
-import jakarta.persistence.Column;
 
 import java.util.Date;
 
 public class ProductResponseDto {
+    Long barcode;
     String name;
     int price;
 
-    Long barcode;
     String company;
     String productName;
     String taxNumber;
@@ -31,7 +30,7 @@ public class ProductResponseDto {
         this.price = product.getPrice();
 
         //추가한 자료형에 필요한 get함수를 작성하였습니다.
-        this.barcode = product.getBarcode();
+        this.barcode = product.getProductBarcode();
         this.company = product.getCompany();
         this.productName = product.getProductName();
         this.taxNumber = product.getTaxNumber();

@@ -14,5 +14,10 @@ public class CreditSummary {
         this.pendingCredits = pendingCredits;
     }
 
+    public CreditSummary() {
+        this.totalCredits = 0;
+        this.pendingCredits = 0;
+    }
+
     // getter, setter 생략
 }

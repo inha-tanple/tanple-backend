@@ -1,9 +1,10 @@
 package inha.tanple.domain;
 
+import groovyjarjarantlr4.v4.runtime.misc.NotNull;
+import groovyjarjarantlr4.v4.runtime.misc.Nullable;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -13,61 +14,44 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Table(name = "products")
 @EntityListeners(AuditingEntityListener.class)
-public class Product {
+public class Product extends BaseEntity {
 
-    @Column(nullable = false)
+    @Id
+    private Long productBarcode;
+
+    @NotNull
     private String name;
 
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private LocalDateTime createdDate;
-
-    @LastModifiedDate
-    @Column(nullable = false)
-    private LocalDateTime lastModifiedDate;
-
-//interface 용 데이터를 작성했습니다.
-    @Id // 기존의 ID 대신 Barcode로 대체하였습니다.
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
-    private Long barcode;
-
-    @Column(nullable = false)
+    @NotNull
     private String company;
 
-    @Column(nullable = false)
+    @NotNull
     private String productName;
 
-    @Column(nullable = false)
+
+    @NotNull
     private int price;
 
-    @Column(nullable = true)
     private String taxNumber;
 
-    @Column(nullable = false)
+    @NotNull
     private int taxIncludedPrice;
 
-    @Column(nullable = false)
+    @NotNull
     private String category;
 
-    @Column(nullable = false)
+    @NotNull
     private float taxRate;
 
-    @Column(nullable = false)
+    // 비즈니스 로직: 적립 시작-종료 일자입니다.
+    @NotNull
     private Date startDate;
 
-    @Column(nullable = false)
+    @NotNull
     private Date endDate;
 
-    // startDate와 endDate의 할당을 분리하였습니다.
-    protected void setStartDate(Date startDate) {
-        startDate = new Date();
-    }
-
-    protected void setEndDate(Date endDate) {
-        endDate = new Date();
-    }
-
+    // 엔티티 관리 로직: 엔티티 갱신 일자입니다.
+    @LastModifiedDate
+    private LocalDateTime lastModifiedDate;
 }
