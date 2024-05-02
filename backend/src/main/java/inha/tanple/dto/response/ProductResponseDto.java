@@ -1,7 +1,6 @@
 package inha.tanple.dto.response;
 
 import inha.tanple.domain.Product;
-import jakarta.persistence.Column;
 
 import java.util.Date;
 

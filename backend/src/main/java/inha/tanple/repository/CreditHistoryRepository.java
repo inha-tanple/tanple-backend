@@ -1,7 +1,6 @@
 package inha.tanple.repository;
 
 import inha.tanple.domain.CreditHistory;
-import inha.tanple.domain.Member;
 import inha.tanple.domain.Wallet;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

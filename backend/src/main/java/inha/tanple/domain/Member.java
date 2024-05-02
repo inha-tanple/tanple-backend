@@ -4,10 +4,7 @@ import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -29,7 +26,7 @@ public class Member extends BaseEntity {
     private String phoneNumber;
 
     @NotNull
-    private LocalDate birthDate;
+    private LocalDateTime birthDate;
 
     @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private Wallet wallet;

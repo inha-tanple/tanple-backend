@@ -5,7 +5,6 @@ import inha.tanple.dto.response.CreditSummaryResponseDto;
 import inha.tanple.service.CreditHistoryService;
 import inha.tanple.service.MemberService;
 import io.swagger.v3.oas.annotations.Operation;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
