@@ -1,12 +1,12 @@
 package inha.tanple.service;
 
+import inha.tanple.domain.Member;
 import inha.tanple.domain.Product;
-import inha.tanple.domain.User;
-import inha.tanple.domain.UserFavoriteProduct;
+import inha.tanple.domain.MemberFavoriteProduct;
 import inha.tanple.exception.ResourceNotFoundException;
 import inha.tanple.repository.ProductRepository;
 import inha.tanple.repository.UserFavoriteProductRepository;
-import inha.tanple.repository.UserRepository;
+import inha.tanple.repository.MemberRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -19,12 +19,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductService {
 
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
     private final ProductRepository productRepository;
     private final UserFavoriteProductRepository userFavoriteProductRepository;
 
-    public Product getProduct(Long productId) {
-        Product product = productRepository.findById(productId)
+    public Product getProduct(Long productBarcode) {
+        Product product = productRepository.findById(productBarcode)
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
         return product;
     }
@@ -36,26 +36,26 @@ public class ProductService {
     }
 
     @Transactional
-    public void toggleFavorite(Long userId, Long productId) {
+    public void toggleFavorite(Long memberId, Long productBarcode) {
 
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new ResourceNotFoundException("Member not found"));
 
-        Product product = productRepository.findById(productId)
+        Product product = productRepository.findById(productBarcode)
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
 
-        boolean isFavorite = userFavoriteProductRepository.existsByUserAndProduct(user, product);
+        boolean isFavorite = userFavoriteProductRepository.existsByMemberAndProduct(member, product);
 
 
         if (isFavorite) {
-            UserFavoriteProduct userFavoriteProduct = userFavoriteProductRepository.findByUserAndProduct(user, product);
-            userFavoriteProductRepository.delete(userFavoriteProduct);
+            MemberFavoriteProduct memberFavoriteProduct = userFavoriteProductRepository.findByMemberAndProduct(member, product);
+            userFavoriteProductRepository.delete(memberFavoriteProduct);
         } else {
             // TODO: 빌더패턴으로 바꾸기
-            UserFavoriteProduct userFavoriteProduct = new UserFavoriteProduct();
-            userFavoriteProduct.setUser(user);
-            userFavoriteProduct.setProduct(product);
-            userFavoriteProductRepository.save(userFavoriteProduct);
+            MemberFavoriteProduct memberFavoriteProduct = new MemberFavoriteProduct();
+            memberFavoriteProduct.setMember(member);
+            memberFavoriteProduct.setProduct(product);
+            userFavoriteProductRepository.save(memberFavoriteProduct);
         }
     }
 }

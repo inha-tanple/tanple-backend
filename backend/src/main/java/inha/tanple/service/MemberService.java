@@ -1,6 +1,6 @@
 package inha.tanple.service;
 
-import inha.tanple.repository.UserRepository;
+import inha.tanple.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -8,9 +8,9 @@ import java.time.LocalDate;
 
 @RequiredArgsConstructor
 @Service
-public class AuthService {
+public class MemberService {
 
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
 
 
     public String authenticateWithGoogle(String idToken) {

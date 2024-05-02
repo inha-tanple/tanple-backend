@@ -1,8 +1,8 @@
 package inha.tanple.controller.v1.admin;
 
 
-import inha.tanple.domain.User;
-import inha.tanple.repository.UserRepository;
+import inha.tanple.domain.Member;
+import inha.tanple.repository.MemberRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("/admin")
 public class AdminController {
 
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
 
 
     @Operation(summary = "어드민 홈페이지입니다.")
@@ -32,16 +32,16 @@ public class AdminController {
     }
 
     @Operation(summary = "사용자를 관리하는 페이지입니다. ")
-    @GetMapping("/userList")
+    @GetMapping("/memberList")
     public String list(Model model) {
 
-        List<User> userList = userRepository.findAll();
+        List<Member> memberList = memberRepository.findAll();
 
-        model.addAttribute("userList", userList);
+        model.addAttribute("memberList", memberList);
 
         // resources -> template를 추적해 home.html로 찾아감,
         // Thymeleaf 템플릿 엔진이 처리
-        return "users/userList";
+        return "members/memberList";
         // link to resources:templates/home.html
     }
 
