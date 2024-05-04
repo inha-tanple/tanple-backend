@@ -10,7 +10,7 @@ spring:
       roles: ADMIN, USER
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
     show-sql: true
 springdoc:
   swagger-ui:

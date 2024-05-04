@@ -27,11 +27,11 @@ public class ProductController {
             @RequestParam(defaultValue = "20") int limit) {
         List<Product> products = productService.getProducts(offset, limit);
 
-        List<ProductResponseDto> dtos = products.stream()
-                .map(p -> new ProductResponseDto(p.getProductBarcode(), p.getName(), p.getPrice()))
+        List<ProductResponseDto> dtoList = products.stream()
+                .map(p -> new ProductResponseDto(p))
                 .collect(Collectors.toList());
 
-        return ResponseEntity.ok(dtos);
+        return ResponseEntity.ok(dtoList);
     }
 
     @Operation(summary = "ID에 해당하는 물품 정보를 가져옵니다.")

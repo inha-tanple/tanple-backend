@@ -15,43 +15,35 @@ import java.util.Date;
 @Setter
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class Product extends BaseEntity {
+public class Product extends BaseTimeEntity {
 
     @Id
-    private Long productBarcode;
+    private Long productBarcode; // 바코드
 
-    @NotNull
-    private String name;
+    @Column(nullable = false)
+    private String company; // 제조사/유통사
 
-    @NotNull
-    private String company;
+    @Column(nullable = false)
+    private String productName; // 제품명
 
-    @NotNull
-    private String productName;
+    @Column(nullable = false)
+    private int price; // 판매가
 
+    @Column(length = 20)
+    private String businessRegistrationNumber; // 사업자등록번호
 
-    @NotNull
-    private int price;
+    @Column(nullable = false)
+    private int earnedCredit; // 적립 포인트 -> 적립 크레딧
 
-    private String taxNumber;
+    @Column(length = 20, nullable = false)
+    private String certificationCategory; // 인증구분
 
-    @NotNull
-    private int taxIncludedPrice;
+    @Column(nullable = false)
+    private float earningRate; // 적립율
 
-    @NotNull
-    private String category;
+    @Column(nullable = false)
+    private LocalDateTime registerStartDate; // 시작일
 
-    @NotNull
-    private float taxRate;
-
-    // 비즈니스 로직: 적립 시작-종료 일자입니다.
-    @NotNull
-    private Date startDate;
-
-    @NotNull
-    private Date endDate;
-
-    // 엔티티 관리 로직: 엔티티 갱신 일자입니다.
-    @LastModifiedDate
-    private LocalDateTime lastModifiedDate;
+    @Column(nullable = false)
+    private LocalDateTime registerEndDate; // 마감일
 }
