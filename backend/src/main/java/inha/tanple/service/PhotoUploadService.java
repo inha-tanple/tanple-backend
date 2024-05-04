@@ -33,13 +33,11 @@ public class PhotoUploadService {
         photoUpload.setProduct(product);
         photoUpload.setPhotoUrl(photoUrl);
 
-
         return photoUploadRepository.save(photoUpload);
     }
 
     public List<PhotoUpload> getPhotoUploadsByMemberId(Long memberId) {
         return photoUploadRepository.findByMemberId(memberId);
     }
-
 
 }

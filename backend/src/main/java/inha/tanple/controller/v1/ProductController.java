@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 @RestController
 @RequestMapping
 @RequiredArgsConstructor
@@ -20,7 +19,6 @@ import java.util.stream.Collectors;
 public class ProductController {
 
     private final ProductService productService;
-
 
     @Operation(summary = "물품 조회", description = "물품 리스트를 조건에 맞추어 가져옵니다.")
     @GetMapping("/v1/products")

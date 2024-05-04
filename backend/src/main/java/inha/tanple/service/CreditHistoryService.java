@@ -30,10 +30,10 @@ public class CreditHistoryService {
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new ResourceNotFoundException("Member not found"));
 
-
         List<CreditHistory> creditHistories = creditHistoryRepository.findByMemberId(memberId);
         return creditHistories;
     }
+
     public List<CreditHistory> getPendingCreditHistories(Long memberId) {
         // TODO:
 
@@ -42,21 +42,14 @@ public class CreditHistoryService {
 
         Wallet wallet = member.getWallet();
 
-
         List<CreditHistory> creditHistories = creditHistoryRepository.findByMemberId(memberId);
 
-        for (CreditHistory creditHistory:
-             creditHistories) {
-
+        for (CreditHistory creditHistory : creditHistories) {
 
         }
 
         // TODO::
         return creditHistories;
     }
-
-
-
-
 
 }

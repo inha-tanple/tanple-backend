@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserFavoriteProductRepository extends JpaRepository<MemberFavoriteProduct, Long> {
 
-
     MemberFavoriteProduct findByMemberAndProduct(Member member, Product product);
 
     boolean existsByMemberAndProduct(Member member, Product product);

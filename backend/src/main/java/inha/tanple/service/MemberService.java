@@ -12,7 +12,6 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-
     public String authenticateWithGoogle(String idToken) {
         // Google OAuth 인증 로직 구현
         // 인증 정보를 바탕으로 User 엔티티 생성 또는 조회

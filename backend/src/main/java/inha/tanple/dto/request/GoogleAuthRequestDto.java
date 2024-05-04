@@ -1,6 +1,5 @@
 package inha.tanple.dto.request;
 
-
 import lombok.Getter;
 import lombok.Setter;
 

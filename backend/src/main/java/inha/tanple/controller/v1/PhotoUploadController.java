@@ -16,7 +16,6 @@ public class PhotoUploadController {
 
     private final PhotoUploadService photoUploadService;
 
-
     @Operation(summary = "사진 업로드", description = "사진을 서버에 업로드합니다.")
     @PostMapping("/v1/photos")
     public void uploadPhoto(@RequestBody Long productBarcode, @RequestBody String photoBytes) {
@@ -40,6 +39,5 @@ public class PhotoUploadController {
 
         return photoUploads;
     }
-
 
 }

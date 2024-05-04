@@ -1,6 +1,5 @@
 package inha.tanple.controller.v1.admin;
 
-
 import inha.tanple.domain.Member;
 import inha.tanple.repository.MemberRepository;
 import io.swagger.v3.oas.annotations.Operation;
@@ -18,7 +17,6 @@ import java.util.List;
 public class AdminController {
 
     private final MemberRepository memberRepository;
-
 
     @Operation(summary = "관리자 페이지 - 홈", description = "관리자 홈페이지입니다.")
     @GetMapping("/admin")
@@ -54,6 +52,5 @@ public class AdminController {
         return "members/memberList";
         // link to resources:templates/home.html
     }
-
 
 }
