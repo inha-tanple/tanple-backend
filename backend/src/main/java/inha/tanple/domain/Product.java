@@ -1,20 +1,14 @@
 package inha.tanple.domain;
 
-import groovyjarjarantlr4.v4.runtime.misc.NotNull;
-import groovyjarjarantlr4.v4.runtime.misc.Nullable;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Getter
 @Setter
 @Entity
-@EntityListeners(AuditingEntityListener.class)
 public class Product extends BaseTimeEntity {
 
     @Id
