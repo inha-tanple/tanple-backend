@@ -3,6 +3,7 @@ package inha.tanple.controller.v1;
 import inha.tanple.domain.CreditHistory;
 import inha.tanple.service.CreditHistoryService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,11 +14,12 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
+@Tag(name = "크레딧 조회", description = "크레딧 정보를 다양한 형태로 제공합니다.")
 public class CreditController {
 
     private final CreditHistoryService creditHistoryService;
 
-    @Operation(summary = "개인 크레딧 정보(크레딧, 거래내역, 처리중 내역)를 가져옵니다.")
+    @Operation(summary = "크레딧 정보 조회", description = "크레딧 현황, 거래 내역, 처리 내역 등 크레딧 정보를 가져옵니다.")
     @GetMapping("/v1/credits")
     public List<CreditHistory> getCredits(
             @Nullable @RequestParam String category,
@@ -32,7 +34,7 @@ public class CreditController {
         return credits;
     }
 
-    @Operation(summary = "개인 크레딧 정보를 캘린더 형식으로 가져옵니다.")
+    @Operation(summary = "크레딧 정보 조회 - 캘린더 형식", description = "크레딧 정보를 캘린더 형식으로 가져옵니다.")
     @GetMapping("/v1/credits/calendar")
     public List<CreditHistory> getCreditsByCalendar() {
         // 현재 인증된 사용자 ID 가져오기 (예: userId = 1L)
