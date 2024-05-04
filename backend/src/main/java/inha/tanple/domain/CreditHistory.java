@@ -1,7 +1,5 @@
 package inha.tanple.domain;
 
-import groovyjarjarantlr4.v4.runtime.misc.NotNull;
-import groovyjarjarantlr4.v4.runtime.misc.Nullable;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,17 +14,25 @@ public class CreditHistory extends BaseEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "wallet_id")
+    @JoinColumn(name = "wallet_id", nullable = false)
     private Wallet wallet;
 
-    @NotNull
-    private int amount;
+    @Column(nullable = false)
+    private int credit;
 
+    @Column(nullable = false)
+    private int balance;
+
+    // enum CreditType = ["CREDITED", "USED"] 은 credit 부호로 판단, Dto 구성 예정
+
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private CreditStatus creditStatus; // ["PENDING", "CREDITED", "USED"]
+    private CreditMethod creditMethod; // ["PURCHASE", "EXCHANGE", "DONATION"]
 
-    @Nullable
+    @Column(length = 100)
+    private String detail; // 소금 1kg, PURCHASE, EXCHANGE, 세제 1L, ...
+
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "upload_id")
-    private PhotoUpload photoUpload;
+    @JoinColumn(name = "photo_upload_id", nullable = false)
+    private PhotoUpload photoUpload; // 사진 업로드 일자, productBarcode 를 가져와 Dto 구성 예정
 }

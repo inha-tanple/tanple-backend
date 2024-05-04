@@ -1,6 +1,5 @@
 package inha.tanple.dto.response;
 
-
 import inha.tanple.dto.CreditSummary;
 import lombok.Getter;
 import lombok.Setter;

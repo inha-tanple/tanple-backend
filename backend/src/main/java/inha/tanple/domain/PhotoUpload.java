@@ -7,7 +7,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class PhotoUpload extends BaseEntity {
+public class PhotoUpload extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "photo_upload_id")
@@ -21,8 +21,11 @@ public class PhotoUpload extends BaseEntity {
     @JoinColumn(name = "product_barcode", nullable = false)
     private Product product;
 
+    @Column
     private String photoUrl;
 
     @Enumerated(EnumType.STRING)
-    private PhotoUploadStatus photoUploadStatus; // ["PENDING", "SUCCESS", "FAIL"]
+    @Column(nullable = false)
+    private PhotoUploadStatus photoUploadStatus; // ["PENDING", "SUCCESS", "FAIL"],
+    // PENDING -> SUCCESS => CreditHistory 로 적립
 }

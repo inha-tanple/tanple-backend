@@ -2,44 +2,41 @@ package inha.tanple.dto.response;
 
 import inha.tanple.domain.Product;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class ProductResponseDto {
-    Long barcode;
-    String name;
-    int price;
+    Long productBarcode; // 바코드
 
-    String company;
-    String productName;
-    String taxNumber;
-    int taxIncludedPrice;
-    String category;
-    float taxRate;
-    Date startDate;
-    Date endDate;
+    String company; // 제조사/유통사
 
-    public ProductResponseDto(Long barcode, String name, int price) {
-        this.barcode = barcode;
-        this.name = name;
-        this.price = price;
-    }
+    String productName; // 제품명
 
+    int price; // 판매가
+
+    String businessRegistrationNumber; // 사업자등록번호
+
+    int earnedCredit; // 적립 포인트 -> 적립 크레딧
+
+    String certificationCategory; // 인증구분
+
+    float earningRate; // 적립율
+
+    LocalDateTime registerStartDate; // 시작일
+
+    LocalDateTime registerEndDate; // 마감일
 
     public ProductResponseDto(Product product) {
-        this.name = product.getName();
+        this.productName = product.getProductName();
         this.price = product.getPrice();
 
-        //추가한 자료형에 필요한 get함수를 작성하였습니다.
-        this.barcode = product.getProductBarcode();
+        // 추가한 자료형에 필요한 get 함수를 작성하였습니다.
+        this.productBarcode = product.getProductBarcode();
         this.company = product.getCompany();
-        this.productName = product.getProductName();
-        this.taxNumber = product.getTaxNumber();
-        this.taxIncludedPrice = product.getTaxIncludedPrice();
-        this.category = product.getCategory();
-        this.taxRate = product.getTaxRate();
-        this.startDate = product.getStartDate();
-        this.endDate = product.getEndDate();
-
-
+        this.businessRegistrationNumber = product.getBusinessRegistrationNumber();
+        this.earnedCredit = product.getEarnedCredit();
+        this.certificationCategory = product.getCertificationCategory();
+        this.earningRate = product.getEarningRate();
+        this.registerStartDate = product.getRegisterStartDate();
+        this.registerEndDate = product.getRegisterEndDate();
     }
 }

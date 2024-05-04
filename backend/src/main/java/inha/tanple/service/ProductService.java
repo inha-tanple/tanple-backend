@@ -46,9 +46,9 @@ public class ProductService {
 
         boolean isFavorite = userFavoriteProductRepository.existsByMemberAndProduct(member, product);
 
-
         if (isFavorite) {
-            MemberFavoriteProduct memberFavoriteProduct = userFavoriteProductRepository.findByMemberAndProduct(member, product);
+            MemberFavoriteProduct memberFavoriteProduct = userFavoriteProductRepository.findByMemberAndProduct(member,
+                    product);
             userFavoriteProductRepository.delete(memberFavoriteProduct);
         } else {
             // TODO: 빌더패턴으로 바꾸기

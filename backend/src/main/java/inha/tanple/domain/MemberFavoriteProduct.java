@@ -18,7 +18,6 @@ public class MemberFavoriteProduct extends BaseEntity {
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", nullable = false)
+    @JoinColumn(name = "product_barcode", nullable = false)
     private Product product;
-
 }

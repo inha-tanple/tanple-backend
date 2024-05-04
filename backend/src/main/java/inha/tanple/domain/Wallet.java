@@ -1,6 +1,5 @@
 package inha.tanple.domain;
 
-import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,14 +18,14 @@ public class Wallet {
     @Column(name = "wallet_id")
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "member_id")
+    @OneToOne(mappedBy = "wallet", fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
-    @NotNull
+    @Column(nullable = false)
     private int balance = 0;
 
-    @OneToMany(mappedBy = "wallet", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "wallet")
     @BatchSize(size = 100)
     private List<CreditHistory> creditHistories = new ArrayList<>();
 }

@@ -1,6 +1,5 @@
 package inha.tanple.domain;
 
-import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,25 +9,25 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-public class Member extends BaseEntity {
+public class Member extends BaseTimeEntity {
     @Id
     @GeneratedValue
     @Column(name = "member_id")
     private Long id;
 
-    @NotNull
+    @Column(nullable = false)
     private String email;
 
-    @NotNull
+    @Column(nullable = false)
     private String password;
 
-    @NotNull
+    @Column(nullable = false)
     private String phoneNumber;
 
-    @NotNull
+    @Column(nullable = false)
     private LocalDateTime birthDate;
 
-    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "wallet_id", nullable = false)
     private Wallet wallet;
-
 }
