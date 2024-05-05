@@ -41,6 +41,6 @@ cd h2/bin
 ./h2.sh
 ```
 
-> you can access database in web ![alt text](docs/images/h2-setup.png)
+> you can access database in web <img src="docs/images/h2-setup.png" alt="h2-setup" style="width: 40%; display: block; margin: auto;">
 
 2. run server
