@@ -1,4 +1,7 @@
 #!/bin/sh
+
+touch ~/tanple.mv.db
+
 if [ -z "$JAVA_HOME" ] ; then
   if [[ "$OSTYPE" == "darwin"* ]]; then
     if [ -d "/System/Library/Frameworks/JavaVM.framework/Home" ] ; then

@@ -1,3 +1,15 @@
+
+@echo off
+set HOME_DIR=%USERPROFILE%
+set FILE=%HOME_DIR%\tanple.mv.db
+
+if not exist %FILE% (
+    echo. > %FILE%
+    echo File %FILE% created.
+) else (
+    echo File %FILE% already exists.
+)
+
 @echo off
 if "%JAVA_HOME%"=="" echo Error: JAVA_HOME is not defined.
 if "%1"=="clean" rmdir /s /q temp bin 2>nul
