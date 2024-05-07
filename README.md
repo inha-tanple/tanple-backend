@@ -13,23 +13,32 @@
 </div>
 </div>
 
+## 서비스 아키텍처
+
+<img src="docs/images/architecture.png" alt="Tanple architecture">
+
+## ERD
+
+<img src="docs/images/ERD.png" alt="Tanple ERD">
 
 ## pre-requisite
 
 1. install jdk-17
+
 ```bash
 # install jdk-17
 ```
 
 2. clone repository
+
 ```bash
 git clone https://github.com/inha-tanple/tanple-backend.git
 cd tanple-backend
 ```
 
-## run
+## To contributor: how to run Application
 
-1. run h2-database
+1. first, run h2-database
 
 ```bash
 cd h2/bin
@@ -43,4 +52,8 @@ cd h2/bin
 
 > you can access database in web <img src="docs/images/h2-setup.png" alt="h2-setup" style="width: 40%; display: block; margin: auto;">
 
-2. run server
+2. then you can start Spring Application
+
+```bash
+
+```
