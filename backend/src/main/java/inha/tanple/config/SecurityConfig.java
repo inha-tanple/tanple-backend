@@ -23,6 +23,8 @@ public class SecurityConfig {
 //                        .anyRequest().authenticated()
 //                )
 //                .formLogin(Customizer.withDefaults());
+
+
         http
                 .authorizeHttpRequests((authz) ->
                         authz
@@ -35,6 +37,9 @@ public class SecurityConfig {
                         headerConfig.frameOptions(frameOptionsConfig ->
                                 frameOptionsConfig.disable()
                         )
+                )
+                .cors((cors) ->cors
+                        .disable()
                 )
                 .formLogin(Customizer.withDefaults());
 
