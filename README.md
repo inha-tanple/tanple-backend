@@ -36,6 +36,13 @@ git clone https://github.com/inha-tanple/tanple-backend.git
 cd tanple-backend
 ```
 
+
+3. Install Env Files using java file (e.g. yml, ...)
+
+```bash
+java InstallEnv
+```
+
 ## To contributor: how to run Application
 
 1. first, run h2-database
