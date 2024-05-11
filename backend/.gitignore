@@ -1,3 +1,7 @@
+### yml ###
+resources/application-datasource.yml
+resources/application-security.yml
+
 HELP.md
 .gradle
 build/

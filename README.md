@@ -26,7 +26,7 @@
 1. install jdk-17
 
 ```bash
-# install jdk-17
+# install openjdk-17
 ```
 
 2. clone repository
@@ -36,24 +36,20 @@ git clone https://github.com/inha-tanple/tanple-backend.git
 cd tanple-backend
 ```
 
-## To contributor: how to run Application
-
-1. first, run h2-database
+3. Install Env using java file (e.g. yml, ...)
 
 ```bash
-cd h2/bin
-
-# Windows
-./h2.bat
-
-# macOS
-./h2.sh
+java InstallEnv
 ```
 
-> you can access database in web <img src="docs/images/h2-setup.png" alt="h2-setup" style="width: 40%; display: block; margin: auto;">
+## To contributor: how to check data in h2-database
 
-2. then you can start Spring Application
-
-```bash
+1. Run Spring Application
 
 ```
+e.g. localhost:8080
+```
+
+2. then you can access h2-database in web browser, `/h2-console`
+
+<img src="docs/images/h2-setup.png" alt="h2-setup" style="width: 40%; display: block; margin: auto;">

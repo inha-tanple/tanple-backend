@@ -6,6 +6,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -22,11 +23,23 @@ public class SecurityConfig {
 //                        .anyRequest().authenticated()
 //                )
 //                .formLogin(Customizer.withDefaults());
+
+
         http
                 .authorizeHttpRequests((authz) ->
                         authz
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .anyRequest().permitAll()
+                )
+                .csrf((csrf) -> csrf
+                        .ignoringRequestMatchers(new AntPathRequestMatcher("/h2-console/**")))
+                .headers((headerConfig) ->
+                        headerConfig.frameOptions(frameOptionsConfig ->
+                                frameOptionsConfig.disable()
+                        )
+                )
+                .cors((cors) ->cors
+                        .disable()
                 )
                 .formLogin(Customizer.withDefaults());
 
