@@ -1,0 +1,10 @@
+spring:
+  config:
+    activate:
+      on-profile: security
+
+  security:
+    user:
+      name: username
+      password: userpassword
+      roles: ADMIN, USER

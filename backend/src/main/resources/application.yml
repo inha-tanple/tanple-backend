@@ -1,17 +1,13 @@
 spring:
-  datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:tcp://localhost/~/tanple
-    username: sa
-  security:
-    user:
-      name: username
-      password: userpassword
-      roles: ADMIN, USER
+  profiles:
+    active: datasource, security
   jpa:
     hibernate:
       ddl-auto: create-drop
     show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
 springdoc:
   swagger-ui:
     path: /docs
