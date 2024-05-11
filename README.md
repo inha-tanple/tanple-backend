@@ -26,7 +26,7 @@
 1. install jdk-17
 
 ```bash
-## install jdk-17
+# install openjdk-17
 ```
 
 2. clone repository
@@ -50,6 +50,6 @@ java InstallEnv
 e.g. localhost:8080
 ```
 
-2. then you can access h2-database in web browser in `/h2-console`
+2. then you can access h2-database in web browser, `/h2-console`
 
 <img src="docs/images/h2-setup.png" alt="h2-setup" style="width: 40%; display: block; margin: auto;">
