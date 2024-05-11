@@ -36,7 +36,7 @@ git clone https://github.com/inha-tanple/tanple-backend.git
 cd tanple-backend
 ```
 
-3. Install Envp using java file (e.g. yml, ...)
+3. Install Env using java file (e.g. yml, ...)
 
 ```bash
 java InstallEnv
