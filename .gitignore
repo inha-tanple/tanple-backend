@@ -2,5 +2,5 @@
 
 ### yml ###
 InstallEnv.java
-*/application-datasource.yml
-*/application-security.yml
+backend/src/main/resources/application-datasource.yml
+backend/src/main/resources/application-security.yml
