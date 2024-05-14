@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: datasource, security
+    active: cloud, datasource, security
   jpa:
     hibernate:
       ddl-auto: create-drop

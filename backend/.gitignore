@@ -1,4 +1,5 @@
 ### yml ###
+resources/application-cloud.yml
 resources/application-datasource.yml
 resources/application-security.yml
 
