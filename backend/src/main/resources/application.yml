@@ -1,11 +1,19 @@
 spring:
   profiles:
-    active: datasource, security
+    active: datasource, cloud
   jpa:
     hibernate:
       ddl-auto: create-drop
     show-sql: true
+
 springdoc:
   swagger-ui:
     path: /docs
   show-login-endpoint: true
+
+logging:
+  level:
+    root: INFO
+    org:
+      springframework:
+        web: DEBUG

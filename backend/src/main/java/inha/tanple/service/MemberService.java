@@ -1,6 +1,9 @@
 package inha.tanple.service;
 
+import inha.tanple.domain.Member;
+import inha.tanple.domain.Wallet;
 import inha.tanple.repository.MemberRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +14,18 @@ import java.time.LocalDate;
 public class MemberService {
 
     private final MemberRepository memberRepository;
+
+
+    @Transactional
+    public Member join(Member member) {
+        // 새로운 Wallet 인스턴스 생성
+        Wallet wallet = new Wallet();
+        wallet.setMember(member);
+        member.setWallet(wallet);
+
+        // Member 저장
+        return memberRepository.save(member);
+    }
 
     public String authenticateWithGoogle(String idToken) {
         // Google OAuth 인증 로직 구현

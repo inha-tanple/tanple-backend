@@ -21,4 +21,5 @@ public class SwaggerConfig {
                 .description("Tanple API Documentation in Swagger UI") // API에 대한 설명
                 .version("1.0.0"); // API의 버전
     }
+
 }
