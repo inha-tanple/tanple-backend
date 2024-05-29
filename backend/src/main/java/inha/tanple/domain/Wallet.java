@@ -14,7 +14,7 @@ import java.util.List;
 public class Wallet {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "wallet_id")
     private Long id;
 

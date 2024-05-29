@@ -9,9 +9,10 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
+@TableGenerator(name = "MEMBER_SEQ_GENERATOR", table = "MEMBER_SEQ", initialValue = 999, allocationSize = 1)
 public class Member extends BaseTimeEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "MEMBER_SEQ_GENERATOR")
     @Column(name = "member_id")
     private Long id;
 

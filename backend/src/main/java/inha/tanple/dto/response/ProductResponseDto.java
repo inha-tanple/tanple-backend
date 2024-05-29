@@ -21,9 +21,9 @@ public class ProductResponseDto {
 
     float earningRate; // 적립율
 
-    LocalDateTime registerStartDate; // 시작일
+    String registerStartDate; // 시작일
 
-    LocalDateTime registerEndDate; // 마감일
+    String registerEndDate; // 마감일
 
     public ProductResponseDto(Product product) {
         this.productName = product.getProductName();
