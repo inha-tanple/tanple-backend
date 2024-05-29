@@ -37,9 +37,8 @@ public class ProductService {
     }
 
 
-    public List<Product> getProducts(int offset, int limit) {
-        Pageable pageable = PageRequest.of(offset, limit);
-        List<Product> products = productRepository.findAll(pageable).getContent();
+    public List<Product> getProducts() {
+        List<Product> products = productRepository.findAll();
         return products;
     }
 

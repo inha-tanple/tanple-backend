@@ -1,36 +1,38 @@
 package inha.tanple.dto.response;
 
 import inha.tanple.domain.Product;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.time.LocalDateTime;
-
+@Getter
+@Setter
 public class ProductResponseDto {
-    Long productBarcode; // 바코드
 
-    String company; // 제조사/유통사
+    private Long productBarcode; // 바코드
 
-    String productName; // 제품명
+    private String company; // 제조사/유통사
 
-    int price; // 판매가
+    private String productName; // 제품명
 
-    String businessRegistrationNumber; // 사업자등록번호
+    private int price; // 판매가
 
-    int earnedCredit; // 적립 포인트 -> 적립 크레딧
+    private String businessRegistrationNumber; // 사업자등록번호
 
-    String certificationCategory; // 인증구분
+    private int earnedCredit; // 적립 포인트 -> 적립 크레딧
 
-    float earningRate; // 적립율
+    private String certificationCategory; // 인증구분
 
-    String registerStartDate; // 시작일
+    private float earningRate; // 적립율
 
-    String registerEndDate; // 마감일
+    private String registerStartDate; // 시작일
+
+    private String registerEndDate; // 마감일
+
 
     public ProductResponseDto(Product product) {
+        this.productBarcode = product.getProductBarcode();
         this.productName = product.getProductName();
         this.price = product.getPrice();
-
-        // 추가한 자료형에 필요한 get 함수를 작성하였습니다.
-        this.productBarcode = product.getProductBarcode();
         this.company = product.getCompany();
         this.businessRegistrationNumber = product.getBusinessRegistrationNumber();
         this.earnedCredit = product.getEarnedCredit();
