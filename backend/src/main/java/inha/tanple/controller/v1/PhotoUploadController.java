@@ -5,6 +5,8 @@ import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import inha.tanple.domain.PhotoUpload;
+import inha.tanple.dto.response.PhotoUploadDto;
+import inha.tanple.dto.response.ProductResponseDto;
 import inha.tanple.exception.ResourceNotFoundException;
 import inha.tanple.service.PhotoUploadService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -18,6 +20,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
@@ -55,13 +58,21 @@ public class PhotoUploadController {
 
     @Operation(summary = "업로드 리스트 조회", description = "업로드한 사진 리스트를 가져옵니다.")
     @GetMapping("/v1/photos")
-    public List<PhotoUpload> getPhotos() {
+    public List<PhotoUploadDto> getPhotos() {
+
+
+        System.out.println("PhotoUploadController.getPhotos");
         // TODO: 현재 인증된 사용자 ID 가져오기 (예: userId = 1000L)
         Long userId = 1000L;
 
-        List<PhotoUpload> photoUploads = photoUploadService.getPhotoUploadsByMemberId(userId);
+        List<PhotoUpload> photoUploads = photoUploadService.getPhotoUploads(userId);
 
-        return photoUploads;
+
+        List<PhotoUploadDto> dtoList = photoUploads.stream()
+                .map(p -> new PhotoUploadDto(p))
+                .collect(Collectors.toList());
+
+        return dtoList;
     }
 
 }

@@ -14,14 +14,15 @@ import inha.tanple.repository.ProductRepository;
 import inha.tanple.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -47,7 +48,11 @@ public class PhotoUploadService {
 
         // put on S3
         String timestamp = now.format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
-        String fileName = "tanple/photos/" + userId + "/" + timestamp + "_" + barcode;
+
+        String originalFilename = file.getOriginalFilename();
+        int lastIndex = originalFilename.lastIndexOf(".");
+        String ext = originalFilename.substring(lastIndex);
+        String fileName = "tanple/photos/" + userId + "/" + timestamp + "_" + barcode + ext;
         ObjectMetadata metadata = new ObjectMetadata();
         metadata.setContentLength(file.getSize());
 
@@ -56,18 +61,27 @@ public class PhotoUploadService {
                         .withCannedAcl(CannedAccessControlList.Private)
         );
 
+
         // log on database
         PhotoUpload photoUpload = new PhotoUpload();
         photoUpload.setMember(member);
         photoUpload.setProduct(product);
-        photoUpload.setPhotoUrl(fileName);
+        String url = amazonS3Client.getUrl(bucket, fileName).toString();
+        photoUpload.setPhotoUrl(url);
         photoUpload.setPhotoUploadStatus(PhotoUploadStatus.PENDING);
 
         photoUploadRepository.save(photoUpload);
     }
 
-    public List<PhotoUpload> getPhotoUploadsByMemberId(Long memberId) {
-        return photoUploadRepository.findByMemberId(memberId);
+    public List<PhotoUpload> getPhotoUploads(Long memberId) {
+
+        Member member = memberRepository.findById(memberId).orElseThrow();
+
+        List<PhotoUpload> photoUploadsByMember = photoUploadRepository.findPhotoUploadsByMember(member);
+
+        System.out.println("photoUploadsByMember.size() = " + photoUploadsByMember.size());
+        
+        return photoUploadsByMember;
     }
 
 }
