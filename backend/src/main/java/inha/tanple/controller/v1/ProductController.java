@@ -22,38 +22,35 @@ public class ProductController {
 
     @Operation(summary = "물품 조회", description = "물품 리스트를 조건에 맞추어 가져옵니다.")
     @GetMapping("/v1/products")
-    public ResponseEntity<List<ProductResponseDto>> getProducts(
-            @RequestParam(defaultValue = "0") int offset,
-            @RequestParam(defaultValue = "20") int limit) {
-        List<Product> products = productService.getProducts(offset, limit);
+    public List<ProductResponseDto> getProducts() {
+        List<Product> products = productService.getProducts();
 
         List<ProductResponseDto> dtoList = products.stream()
                 .map(p -> new ProductResponseDto(p))
                 .collect(Collectors.toList());
 
-        return ResponseEntity.ok(dtoList);
+        return dtoList;
     }
 
     @Operation(summary = "물품 세부 조회", description = "ID에 해당하는 물품 정보를 가져옵니다.")
     @GetMapping("/v1/products/{productId}")
-    public ResponseEntity<ProductResponseDto> getProduct(@PathVariable Long productId) {
+    public ProductResponseDto getProduct(@PathVariable Long productId) {
         Product product = productService.getProduct(productId);
 
-        ProductResponseDto dto = new ProductResponseDto(product);
-
-        return ResponseEntity.ok(dto);
+        return new ProductResponseDto(product);
     }
 
     @Operation(summary = "물품 즐겨찾기 갱신", description = "물품 즐겨찾기를 등록/해제합니다. (수정 필요)")
     @PostMapping("/v1/products/{productId}/favorite")
-    public ResponseEntity<Void> toggleFavorite(@PathVariable Long productId) {
+    public String toggleFavorite(@PathVariable Long productId) {
 
         // 현재 인증된 사용자 ID 가져오기 (예: userId = 1L)
         Long userId = 1000L;
 
         // TODO: 토글 말고 lazy 한 업데이트 기획
         productService.toggleFavorite(productId, userId);
-        return ResponseEntity.ok().build();
+
+        return "OK";
     }
 
 }

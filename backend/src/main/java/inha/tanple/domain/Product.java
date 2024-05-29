@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-
 @Getter
 @Setter
 @Entity
@@ -36,8 +34,8 @@ public class Product extends BaseTimeEntity {
     private float earningRate; // 적립율
 
     @Column(nullable = false)
-    private LocalDateTime registerStartDate; // 시작일
+    private String registerStartDate; // 시작일
 
     @Column(nullable = false)
-    private LocalDateTime registerEndDate; // 마감일
+    private String registerEndDate; // 마감일
 }
