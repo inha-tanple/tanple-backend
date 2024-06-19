@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @Tag(name = "거래", description = "월렛 간의 크레딧 이체를 관리합니다.")
 public class TransactionController {
-// 탄소배출권을 유저로 생각해서 따로 탄소배출권을 만들지 말고 교환하는 방식으로 어마운트 설정
+    // 탄소배출권을 유저로 생각해서 따로 탄소배출권을 만들지 말고 교환하는 방식으로 어마운트 설정
     private final TransactionService transactionService;
 
     @Operation(summary = "크레딧 교환", description = "다른 멤버와 크레딧을 교환합니다.")

@@ -41,7 +41,7 @@ public class CreditController {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate start = LocalDate.parse(startDate, formatter);
             LocalDate end = LocalDate.parse(endDate, formatter);
-            credits = creditHistoryService.getCreditHistoriesWithinPeriod(userId,start,end);
+            credits = creditHistoryService.getCreditHistoriesWithinPeriod(userId, start, end);
         }
         // 기간 지정이 안되면 그냥 가져오기
         credits = creditHistoryService.getCreditHistories(userId);
@@ -53,13 +53,13 @@ public class CreditController {
     @GetMapping("/v1/credits/calendar")
     public List<CreditHistory> getCreditsByCalendar(
             @RequestParam int year,
-            @RequestParam int month){
+            @RequestParam int month) {
 
         // 현재 인증된 사용자 ID 가져오기 (예: userId = 1L)
         Long userId = 1000L;
 
         YearMonth targetMonth = YearMonth.of(year, month);
-        List<CreditHistory> credits = creditHistoryService.getCreditHistoriesByMonth(userId,targetMonth);
+        List<CreditHistory> credits = creditHistoryService.getCreditHistoriesByMonth(userId, targetMonth);
         return credits;
     }
 
@@ -70,7 +70,7 @@ public class CreditController {
         // 현재 인증된 사용자 ID 가져오기 (예: userId = 1L)
         Long userId = 1000L;
 
-        List <CreditHistory> credits = creditHistoryService.getCreditHistoriesByType(userId,creditType);
+        List<CreditHistory> credits = creditHistoryService.getCreditHistoriesByType(userId, creditType);
         return credits;
     }
 

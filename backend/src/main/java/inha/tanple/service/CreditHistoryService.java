@@ -55,7 +55,7 @@ public class CreditHistoryService {
     public List<CreditHistory> getCreditHistories(Long memberId) {
         // TODO:
 
-        if (memberId <0 || memberId > memberRepository.count()) {
+        if (memberId < 0 || memberId > memberRepository.count()) {
             throw new ResourceNotFoundException("Member not found, memberId: " + memberId);
         }
 
@@ -109,13 +109,15 @@ public class CreditHistoryService {
         // TODO::
         return pendingCreditHistories;
     }
+
     // 기간 내 조건에 따라서 물품 목록 확인
     public List<CreditHistory> getCreditHistoriesWithinPeriod(Long memberId, LocalDate startDate, LocalDate endDate) {
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new ResourceNotFoundException("Member not found"));
 
-        return creditHistoryRepository.findByMemberIdAndDateBetween(memberId,startDate,endDate);
+        return creditHistoryRepository.findByMemberIdAndDateBetween(memberId, startDate, endDate);
     }
+
     // 적립 혹은 소비에 따라서 크레딧 가져오기
     public List<CreditHistory> getCreditHistoriesByType(Long memberId, CreditType creditType) {
         Member member = memberRepository.findById(memberId)
@@ -124,11 +126,12 @@ public class CreditHistoryService {
         List<CreditHistory> creditHistories = creditHistoryRepository.findByMemberId(memberId);
 
         List<CreditHistory> filteredCreditHistories = creditHistories.stream()
-                .filter(creditHistory -> creditHistory.getCreditType()==creditType)
+                .filter(creditHistory -> creditHistory.getCreditType() == creditType)
                 .collect(Collectors.toList());
 
         return filteredCreditHistories;
     }
+
     // 년도와 달이 주어지면 해당 기간의 크레딧 정보 리턴
     public List<CreditHistory> getCreditHistoriesByMonth(Long memberId, YearMonth targetMonth) {
         // Member 조회 (없으면 예외 발생)
