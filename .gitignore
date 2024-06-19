@@ -4,3 +4,4 @@
 InstallEnv.java
 backend/src/main/resources/application-datasource.yml
 backend/src/main/resources/application-security.yml
+backend/src/main/resources/application-cloud.yml

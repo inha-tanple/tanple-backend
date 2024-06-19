@@ -28,4 +28,13 @@ public class Wallet {
     @OneToMany(mappedBy = "wallet")
     @BatchSize(size = 100)
     private List<CreditHistory> creditHistories = new ArrayList<>();
+
+    // 추가하기
+    public void credit(int amount) {
+        this.balance += amount;
+    }
+
+    public void debit(int amount) {
+        this.balance -= amount;
+    }
 }
