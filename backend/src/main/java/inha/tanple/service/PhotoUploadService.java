@@ -80,7 +80,7 @@ public class PhotoUploadService {
         List<PhotoUpload> photoUploadsByMember = photoUploadRepository.findPhotoUploadsByMember(member);
 
         System.out.println("photoUploadsByMember.size() = " + photoUploadsByMember.size());
-        
+
         return photoUploadsByMember;
     }
 

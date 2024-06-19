@@ -3,6 +3,7 @@ package inha.tanple.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.boot.model.internal.CannotForceNonNullableException;
 
 @Entity
 @Getter
@@ -36,4 +37,12 @@ public class CreditHistory extends BaseEntity {
     @JoinColumn(name = "photo_upload_id", nullable = true)
     private PhotoUpload photoUpload; // 사진 업로드 일자, productBarcode 를 가져와 Dto 구성 예정
 
+    public boolean isPending(){
+        return this.creditMethod == CreditMethod.PENDING; // 보류중인 크레딧 구분
+    }
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private CreditType creditType; // ["CREDITED", "USED"]
+  
 }
