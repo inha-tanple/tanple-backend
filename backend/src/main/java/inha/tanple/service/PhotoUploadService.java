@@ -4,6 +4,8 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvException;
 import inha.tanple.domain.Member;
 import inha.tanple.domain.PhotoUpload;
 import inha.tanple.domain.PhotoUploadStatus;
@@ -18,11 +20,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -83,5 +83,4 @@ public class PhotoUploadService {
 
         return photoUploadsByMember;
     }
-
 }
