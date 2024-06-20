@@ -8,18 +8,17 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
 public interface CreditHistoryRepository extends JpaRepository<CreditHistory, Long> {
 
-    List<CreditHistory> findByWallet(Wallet wallet);
-
-    @Query("SELECT ct FROM CreditHistory ct WHERE ct.wallet.member = :memberId")
+    @Query("SELECT ct FROM CreditHistory ct WHERE ct.wallet.member.id = :memberId")
     List<CreditHistory> findByMemberId(@Param("memberId") Long memberId);
 
-    @Query("SELECT ct FROM CreditHistory ct WHERE ct.wallet.member.id = :memberId AND ct.createdDate BETWEEN :startDate AND :endDate")
-    List<CreditHistory> findByMemberIdAndDateBetween(@Param("memberId") Long memberId, @Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
-//    @Query("SELECT ct FROM CreditHistory ct WHERE ct.wallet.member.id = :memberId AND ct.credit")
+    @Query("SELECT ct FROM CreditHistory ct WHERE ct.wallet.member.id = :memberId AND ct.createdDate >= :startDate AND ct.createdDate < :endOfMonth")
+    List<CreditHistory> findByMemberIdAndDateBetween(@Param("memberId") Long memberId, @Param("startDate") LocalDateTime startDate, @Param("endOfMonth") LocalDateTime endOfMonth);
+
 }

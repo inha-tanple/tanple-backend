@@ -66,41 +66,4 @@ public class ProductService {
         }
     }
 
-    // ************************
-
-    public Product mapToEntity(String[] record) {
-
-        Product product = new Product();
-        product.setProductBarcode(Long.parseLong(record[0]));
-        product.setCompany(record[1]);
-        product.setProductName(record[2]);
-        product.setPrice(Integer.parseInt(record[3]));
-        product.setBusinessRegistrationNumber(record[4]);
-        product.setEarnedCredit(Integer.parseInt(record[5]));
-        product.setCertificationCategory(record[6]);
-        product.setEarningRate(Float.parseFloat(record[7]));
-        product.setRegisterStartDate(record[8]);
-        product.setRegisterEndDate(record[9]);
-        return product;
-    }
-
-    @PostConstruct
-    @Transactional
-    public void loadData() throws IOException, CsvException {
-
-        // CSV 파일 읽어오기
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("product_list.csv");
-        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-        CSVReader reader = new CSVReader(inputStreamReader);
-        List<String[]> records = reader.readAll();
-
-        // CSV 데이터를 Entity 로 매핑하여 insert
-        for (String[] record : records) {
-            // 첫 번째 레코드는 헤더이므로 skip
-            if (record[0].equals("바코드")) continue;
-
-            Product product = this.mapToEntity(record);
-            productRepository.save(product);
-        }
-    }
 }

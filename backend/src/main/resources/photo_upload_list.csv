@@ -1,0 +1,6 @@
+photo_upload_id,member_id,product_barcode,photo_url,photo_upload_status
+1,1000,8809020767540,http://example.com,SUCCESS
+2,1000,8801007899749,http://example.com,SUCCESS
+3,1000,8801013121506,http://example.com,SUCCESS
+4,1000,8809027396811,http://example.com,SUCCESS
+5,1000,8801046397183,http://example.com,SUCCESS

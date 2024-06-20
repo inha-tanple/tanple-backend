@@ -4,6 +4,8 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvException;
 import inha.tanple.domain.Member;
 import inha.tanple.domain.PhotoUpload;
 import inha.tanple.domain.PhotoUploadStatus;
@@ -12,12 +14,16 @@ import inha.tanple.exception.ResourceNotFoundException;
 import inha.tanple.repository.PhotoUploadRepository;
 import inha.tanple.repository.ProductRepository;
 import inha.tanple.repository.MemberRepository;
+import jakarta.annotation.PostConstruct;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -83,5 +89,4 @@ public class PhotoUploadService {
 
         return photoUploadsByMember;
     }
-
 }
