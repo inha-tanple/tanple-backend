@@ -1,24 +1,16 @@
 package inha.tanple.service;
 
-import com.opencsv.CSVReader;
-import com.opencsv.exceptions.CsvException;
 import inha.tanple.domain.*;
 import inha.tanple.dto.CreditSummary;
 import inha.tanple.exception.ResourceNotFoundException;
 import inha.tanple.repository.CreditHistoryRepository;
 import inha.tanple.repository.MemberRepository;
-import jakarta.annotation.PostConstruct;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.YearMonth;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

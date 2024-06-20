@@ -3,13 +3,11 @@ package inha.tanple.service;
 import inha.tanple.domain.Member;
 import inha.tanple.domain.Wallet;
 import inha.tanple.repository.MemberRepository;
-import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @RequiredArgsConstructor
 @Service
