@@ -4,8 +4,6 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.opencsv.CSVReader;
-import com.opencsv.exceptions.CsvException;
 import inha.tanple.domain.Member;
 import inha.tanple.domain.PhotoUpload;
 import inha.tanple.domain.PhotoUploadStatus;
@@ -82,5 +80,21 @@ public class PhotoUploadService {
         System.out.println("photoUploadsByMember.size() = " + photoUploadsByMember.size());
 
         return photoUploadsByMember;
+    }
+
+    public void updateStatusPendingToSuccess(Long memberId) {
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + memberId));
+
+        // Pending인 데이터만 불러올 것
+        List<PhotoUpload> pendingPhotos = photoUploadRepository.findPhotoUploadsByMemberAndPhotoUploadStatus(member,PhotoUploadStatus.PENDING);
+
+        // 상태를 success로 수정해주기
+        for (PhotoUpload photo : pendingPhotos ){
+            photo.setPhotoUploadStatus(PhotoUploadStatus.SUCCESS);
+        }
+
+        // 변경된 데이터 모두 저장
+        photoUploadRepository.saveAll(pendingPhotos);
     }
 }
