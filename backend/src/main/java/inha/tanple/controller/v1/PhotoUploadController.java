@@ -66,7 +66,4 @@ public class PhotoUploadController {
 
         return dtoList;
     }
-
-
-
 }

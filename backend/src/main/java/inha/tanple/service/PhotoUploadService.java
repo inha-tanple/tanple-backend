@@ -69,7 +69,6 @@ public class PhotoUploadService {
         photoUpload.setPhotoUploadStatus(PhotoUploadStatus.PENDING);
 
         photoUploadRepository.save(photoUpload);
-
         approvePhotoUpload(photoUpload);
     }
 
@@ -83,11 +82,8 @@ public class PhotoUploadService {
 
         return photoUploadsByMember;
     }
-
-
     public void approvePhotoUpload(PhotoUpload photoUpload) {
         photoUpload.setPhotoUploadStatus(PhotoUploadStatus.SUCCESS);
         photoUploadRepository.save(photoUpload);
     }
-
 }
