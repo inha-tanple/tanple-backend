@@ -69,6 +69,8 @@ public class PhotoUploadService {
         photoUpload.setPhotoUploadStatus(PhotoUploadStatus.PENDING);
 
         photoUploadRepository.save(photoUpload);
+
+        approvePhotoUpload(photoUpload);
     }
 
     public List<PhotoUpload> getPhotoUploads(Long memberId) {
@@ -82,19 +84,10 @@ public class PhotoUploadService {
         return photoUploadsByMember;
     }
 
-    public void updateStatusPendingToSuccess(Long memberId) {
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + memberId));
 
-        // Pending인 데이터만 불러올 것
-        List<PhotoUpload> pendingPhotos = photoUploadRepository.findPhotoUploadsByMemberAndPhotoUploadStatus(member,PhotoUploadStatus.PENDING);
-
-        // 상태를 success로 수정해주기
-        for (PhotoUpload photo : pendingPhotos ){
-            photo.setPhotoUploadStatus(PhotoUploadStatus.SUCCESS);
-        }
-
-        // 변경된 데이터 모두 저장
-        photoUploadRepository.saveAll(pendingPhotos);
+    public void approvePhotoUpload(PhotoUpload photoUpload) {
+        photoUpload.setPhotoUploadStatus(PhotoUploadStatus.SUCCESS);
+        photoUploadRepository.save(photoUpload);
     }
+
 }

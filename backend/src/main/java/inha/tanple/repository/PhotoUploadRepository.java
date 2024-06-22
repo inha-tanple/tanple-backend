@@ -14,4 +14,5 @@ public interface PhotoUploadRepository extends JpaRepository<PhotoUpload, Long> 
 
     //상태를 기준으로 데이터 가져오기를 추가하였습니다.
     List<PhotoUpload> findPhotoUploadsByMemberAndPhotoUploadStatus(Member member, PhotoUploadStatus photoUploadStatus);
+;
 }

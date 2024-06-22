@@ -67,21 +67,6 @@ public class PhotoUploadController {
         return dtoList;
     }
 
-    @Operation(summary = "리스트 상태 업데이느", description = "Pending 상태인 데이터를 Success로 바꿉니다.")
-    @GetMapping("/v1/photos/updateStatus")
-    public String updatePhotoStatus() {
-        System.out.println("PhotoUploadController.updatePhotoStatus");
-        Long userId = 1000L;
 
-        //Success로 상태 업데이트
-        try{
-            photoUploadService.updateStatusPendingToSuccess(userId);
-        }catch(ResourceNotFoundException e){ // 에러 처리
-            e.printStackTrace();
-            return "No pending photo";
-        }
-
-        return "Update success";
-    }
 
 }
