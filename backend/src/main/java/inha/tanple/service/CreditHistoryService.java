@@ -41,6 +41,10 @@ public class CreditHistoryService {
         for (CreditHistory creditHistory : creditHistories) {
             LocalDate createdDate = creditHistory.getCreatedDate().toLocalDate();
             YearMonth yearMonth = YearMonth.from(createdDate);
+
+
+            if (creditHistory.getCreditType() == CreditType.소비) continue;
+
             int credits = creditHistory.getCredit();
 
             totalCredits += credits; // 전체 크레딧 누적
