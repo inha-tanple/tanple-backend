@@ -69,7 +69,6 @@ public class PhotoUploadService {
         photoUpload.setPhotoUploadStatus(PhotoUploadStatus.PENDING);
 
         photoUploadRepository.save(photoUpload);
-        approvePhotoUpload(photoUpload);
     }
 
     public List<PhotoUpload> getPhotoUploads(Long memberId) {
@@ -82,7 +81,10 @@ public class PhotoUploadService {
 
         return photoUploadsByMember;
     }
-    public void approvePhotoUpload(PhotoUpload photoUpload) {
+    public void approvePhotoUpload(Long photoUploadId) throws ResourceNotFoundException {
+        PhotoUpload photoUpload = photoUploadRepository.findById(photoUploadId)
+                .orElseThrow(() -> new ResourceNotFoundException("PhotoUpload not found with id: " + photoUploadId));
+
         photoUpload.setPhotoUploadStatus(PhotoUploadStatus.SUCCESS);
         photoUploadRepository.save(photoUpload);
     }
