@@ -67,7 +67,7 @@ public class PhotoUploadController {
         return dtoList;
     }
     @Operation(summary = "사진 승인", description = "PENDING 상태의 사진을 SUCCESS로 변경합니다.")
-    @PostMapping("/{photoUploadId}/approve")
+    @PostMapping("/v1/photos/{photoUploadId}/approve")
     public String approvePhoto(@PathVariable Long photoUploadId) {
         try {
             photoUploadService.approvePhotoUpload(photoUploadId);
