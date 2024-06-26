@@ -4,8 +4,6 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.opencsv.CSVReader;
-import com.opencsv.exceptions.CsvException;
 import inha.tanple.domain.Member;
 import inha.tanple.domain.PhotoUpload;
 import inha.tanple.domain.PhotoUploadStatus;
@@ -82,5 +80,12 @@ public class PhotoUploadService {
         System.out.println("photoUploadsByMember.size() = " + photoUploadsByMember.size());
 
         return photoUploadsByMember;
+    }
+    public void approvePhotoUpload(Long photoUploadId) throws ResourceNotFoundException {
+        PhotoUpload photoUpload = photoUploadRepository.findById(photoUploadId)
+                .orElseThrow(() -> new ResourceNotFoundException("PhotoUpload not found with id: " + photoUploadId));
+
+        photoUpload.setPhotoUploadStatus(PhotoUploadStatus.SUCCESS);
+        photoUploadRepository.save(photoUpload);
     }
 }
